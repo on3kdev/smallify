@@ -1,0 +1,26 @@
+:root {
+  --dark-blue: #7796b9;
+  --blue: #2667ff;
+  --text: #454545;
+  --red: #df4848;
+  --light-grey: #d4d4d4;
+  --lighter-grey: #f2f2f2;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: var(--text);
+  font-size: 16px;
+  margin: 0;
+  background-color: var(--dark-blue);
+}

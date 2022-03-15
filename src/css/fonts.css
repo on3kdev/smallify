@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: bold;
+  font-weight: 700;
+  src: url("../fonts/Roboto-Bold.ttf");
+}
+
+@font-face {
+  font-family: "PassionOne";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/PassionOne-Regular.ttf");
+}
+
+@font-face {
+  font-family: "PassionOne";
+  font-style: bold;
+  font-weight: 700;
+  src: url("../fonts/PassionOne-Bold.ttf");
+}

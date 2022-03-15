@@ -1,0 +1,16 @@
+.btn {
+  border: 0;
+  width: 3em;
+  height: 3em;
+  border-radius: 3em;
+  background-color: transparent;
+  transition: background-color 0.5s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:active {
+  background-color: var(--light-grey);
+}
