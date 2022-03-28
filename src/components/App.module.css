@@ -2,33 +2,3 @@
   height: 100vh;
   padding: 1.5em;
 }
-
-.error {
-  width: fit-content;
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: 0.5em 2em;
-  margin: 0 auto;
-  background-color: var(--red);
-  border-radius: 10em;
-  color: var(--white);
-  transition: all 0.5s;
-}
-
-.error,
-.error-done {
-  top: -1em;
-  opacity: 0;
-  visibility: hidden;
-}
-
-.error-active {
-  top: 2em;
-  opacity: 1;
-  visibility: visible;
-}
-
-p {
-  margin: 0;
-}
