@@ -28,6 +28,10 @@
   margin-right: auto;
 }
 
+.input-margin-bottom {
+  margin-bottom: 1em;
+}
+
 .input-error {
   border-color: var(--red);
 }

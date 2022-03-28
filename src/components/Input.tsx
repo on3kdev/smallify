@@ -9,9 +9,17 @@ interface Props {
   readOnly?: boolean;
   error?: boolean;
   onPaste?: () => void;
+  marginBottom?: boolean;
 }
 
-const Input: FC<Props> = ({ value, onChange, readOnly, error, onPaste }) => (
+const Input: FC<Props> = ({
+  value,
+  onChange,
+  readOnly,
+  error,
+  onPaste,
+  marginBottom,
+}) => (
   <div className={styles.input}>
     <input
       type="text"
@@ -19,12 +27,13 @@ const Input: FC<Props> = ({ value, onChange, readOnly, error, onPaste }) => (
         [styles["input-readonly"]]: readOnly,
         [styles["input-error"]]: error,
         [styles["input-padding"]]: !!onPaste,
+        [styles["input-margin-bottom"]]: marginBottom,
       })}
       placeholder="https://www.npmjs.com/package/smallify"
       autoComplete="off"
       readOnly={readOnly ?? false}
       onChange={onChange}
-      value={value}
+      defaultValue={value}
     />
     {onPaste && <PasteButton onClick={onPaste} />}
   </div>

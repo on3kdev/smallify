@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import React, { FC } from "react";
 import Input from "./Input";
-import styles from "./Search.module.css";
+import styles from "./LinkInput.module.css";
 
 interface Props {
   value: string | undefined;
@@ -11,7 +11,7 @@ interface Props {
   setValue: (value: string) => void;
 }
 
-const Search: FC<Props> = ({
+const LinkInput: FC<Props> = ({
   value,
   onInputChange,
   onSubmit,
@@ -32,4 +32,4 @@ const Search: FC<Props> = ({
   </div>
 );
 
-export default Search;
+export default LinkInput;

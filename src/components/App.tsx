@@ -1,9 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
+import { v4 as uuidv4 } from "uuid";
 import styles from "./App.module.css";
 import Header from "./Header";
+import LinkInput from "./LinkInput";
+import List from "./List";
 import Result from "./Result";
-import Search from "./Search";
 
 interface Error {
   visible: boolean;
@@ -18,6 +20,19 @@ const validateUrl = (url: string) => {
   return res !== null;
 };
 
+const setNewItemtoDb = async (body: string) => {
+  const linksPromise = await fetch("http://localhost:9001/api/links", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: body,
+  });
+
+  return linksPromise.status !== 200;
+};
+
 const App: FC = () => {
   const [isResult, setIsResult] = useState(false);
   const [value, setValue] = useState<string>();
@@ -26,6 +41,12 @@ const App: FC = () => {
     visible: false,
     message: undefined,
   });
+
+  useEffect(() => {
+    const path = window.location.pathname;
+
+    if (path.length < 5) return;
+  }, []);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -44,7 +65,7 @@ const App: FC = () => {
     setIsResult(false);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!value?.length) {
       setError({ visible: true, message: "No URL set" });
       clearError();
@@ -59,8 +80,23 @@ const App: FC = () => {
       return;
     }
 
+    const uuid = uuidv4();
+
+    setUrl(`http://localhost:9000/${uuid}`);
+
+    const fetchBody = JSON.stringify({
+      uid: uuid,
+      url: value,
+    });
+
+    const isError = await setNewItemtoDb(fetchBody);
+
+    if (isError) {
+      setError({ visible: true, message: "Something went wrong" });
+      clearError();
+      return;
+    }
     setIsResult(true);
-    setUrl(undefined);
   };
 
   return (
@@ -81,13 +117,16 @@ const App: FC = () => {
       </CSSTransition>
       <Header isResult={isResult} setIsResult={setIsResult} value={value} />
       {!isResult ? (
-        <Search
-          value={value}
-          error={error.visible}
-          onInputChange={onInputChange}
-          onSubmit={onSubmit}
-          setValue={setValue}
-        />
+        <>
+          <LinkInput
+            value={value}
+            error={error.visible}
+            onInputChange={onInputChange}
+            onSubmit={onSubmit}
+            setValue={setValue}
+          />
+          <List />
+        </>
       ) : (
         <Result url={url} clearFull={clearFull} setIsResult={setIsResult} />
       )}

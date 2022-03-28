@@ -14,7 +14,10 @@ interface Props {
 const Result: FC<Props> = ({ url, clearFull, setIsResult }) => (
   <div id="result" className={classNames(styles.container)}>
     <p className={styles.text}>Copy your new URL!</p>
-    <Input value="" onPaste={() => url && navigator.clipboard.writeText(url)} />
+    <Input
+      value={url ?? ""}
+      onPaste={() => url && navigator.clipboard.writeText(url)}
+    />
     <div className={styles["button-container"]}>
       <Button onClick={() => setIsResult(false)}>
         <Back />
