@@ -36,7 +36,11 @@ const List: FC = () => {
               value={link.url}
               key={key}
               marginBottom={true}
-              onPaste={() => console.log("hhh")}
+              onPaste={() =>
+                navigator.clipboard.writeText(
+                  `http://localhost:9000/redirect/${link.uid}`
+                )
+              }
             />
           ))}
         </div>

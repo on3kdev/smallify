@@ -44,43 +44,27 @@ const Home: FC<Props> = ({ value, error, setValue, setError, setUrl }) => {
     setValue(e.target.value);
   };
 
-  const clearError = () => {
+  const handleError = (message: string) => {
+    setError({ visible: true, message: message });
     setTimeout(() => setError({ ...error, visible: false }), 2000);
   };
 
   const onSubmit = async () => {
-    if (!value?.length) {
-      setError({ visible: true, message: "No URL set" });
-      clearError();
-      return;
-    }
-
-    const isValid = validateUrl(value);
-
-    if (!isValid) {
-      setError({ visible: true, message: "URL is not valid" });
-      clearError();
-      return;
-    }
+    if (!value?.length) return handleError("No URL set");
+    if (!validateUrl(value)) return handleError("URL is not valid");
 
     const uuid = uuidv4();
 
     setUrl(`http://localhost:9000/redirect/${uuid}`);
 
-    const fetchBody = JSON.stringify({
-      uid: uuid,
-      url: value,
-    });
+    const isError = await setNewItemtoDb(
+      JSON.stringify({
+        uid: uuid,
+        url: value,
+      })
+    );
 
-    const isError = await setNewItemtoDb(fetchBody);
-
-    if (isError) {
-      setError({ visible: true, message: "Something went wrong" });
-      clearError();
-      return;
-    }
-
-    navigate("/result");
+    isError ? handleError("Something went wrong") : navigate("/result");
   };
 
   return (
