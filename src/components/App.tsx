@@ -47,7 +47,7 @@ const App: FC = () => {
           />
           <Route
             path="result"
-            element={<Result url={url} clearFull={clearFull} />}
+            element={<Result url={url} value={value} clearFull={clearFull} />}
           />
           <Route path="redirect/:id" element={<Redirect />} />
           <Route path="*" element={<NoMatch />} />
