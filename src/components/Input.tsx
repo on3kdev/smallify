@@ -10,6 +10,7 @@ interface Props {
   error?: boolean;
   onPaste?: () => void;
   marginBottom?: boolean;
+  mobile?: boolean;
 }
 
 const Input: FC<Props> = ({
@@ -19,6 +20,7 @@ const Input: FC<Props> = ({
   error,
   onPaste,
   marginBottom,
+  mobile,
 }) => (
   <div className={styles.input}>
     <input
@@ -28,6 +30,7 @@ const Input: FC<Props> = ({
         [styles["input-error"]]: error,
         [styles["input-padding"]]: !!onPaste,
         [styles["input-margin-bottom"]]: marginBottom,
+        [styles["input-mobile"]]: mobile,
       })}
       placeholder="https://www.npmjs.com/package/smallify"
       autoComplete="off"

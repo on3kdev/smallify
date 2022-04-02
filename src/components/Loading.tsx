@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import styles from "./Loading.module.css";
 
-const Loading: FC = () => {
-  return <div className={styles["loader"]}></div>;
-};
+const Loading: FC = () => <div className={styles["loader"]}></div>;
 
 export default Loading;

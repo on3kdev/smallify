@@ -1,20 +1,16 @@
 import React, { FC, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router";
+import { ErrorType } from "../types/types";
 import styles from "./App.module.css";
 import Home from "./Home";
 import NoMatch from "./NoMatch";
 import Redirect from "./Redirect";
 import Result from "./Result";
 
-export interface Error {
-  visible: boolean;
-  message: string | undefined;
-}
-
 const App: FC = () => {
   const [url, setUrl] = useState<string>();
   const [value, setValue] = useState<string>();
-  const [error, setError] = useState<Error>({
+  const [error, setError] = useState<ErrorType>({
     visible: false,
     message: undefined,
   });

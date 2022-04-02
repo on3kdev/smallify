@@ -8,6 +8,12 @@
   padding: 0 3em;
 }
 
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1.5em;
+  }
+}
+
 .header-flex-end {
   justify-content: flex-end;
   right: 3em;

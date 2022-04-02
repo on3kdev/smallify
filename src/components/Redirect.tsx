@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from "react";
 import { useParams } from "react-router";
 import Loading from "./Loading";
-import styles from "./Redirect.module.css";
 
 const Redirect: FC = () => {
   const { id } = useParams();
@@ -23,7 +22,7 @@ const Redirect: FC = () => {
   }, [id]);
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Loading />
     </div>
   );

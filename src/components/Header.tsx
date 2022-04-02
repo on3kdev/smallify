@@ -30,7 +30,7 @@ const Header: FC<Props> = ({ isResult, value }) => {
           >
             Smallify
           </a>
-          <Input value={value ?? ""} readOnly={true} />
+          <Input value={value ?? ""} readOnly={true} mobile={isResult} />
         </>
       )}
       <div className={styles["external-links"]}>

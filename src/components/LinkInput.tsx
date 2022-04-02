@@ -18,7 +18,7 @@ const LinkInput: FC<Props> = ({
   error,
   setValue,
 }) => (
-  <div className={classnames(styles.container, styles["container-center"])}>
+  <div className={classnames("container", styles["container-center"])}>
     <h1 className={styles.title}>Smallify</h1>
     <Input
       value={value ?? ""}

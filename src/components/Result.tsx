@@ -1,6 +1,5 @@
-import classNames from "classnames";
 import { QRCodeSVG } from "qrcode.react";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { useNavigate } from "react-router";
 import Button from "./Button";
 import { Back, Replay } from "./dist/svg";
@@ -17,10 +16,14 @@ interface Props {
 const Result: FC<Props> = ({ url, value, clearFull }) => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    !url && navigate("/");
+  }, [url]);
+
   return (
     <>
       <Header isResult={true} value={value} />
-      <div id="result" className={classNames(styles.container)}>
+      <div className="container">
         <p className={styles.text}>Copy your new URL!</p>
         <Input
           value={url ?? ""}

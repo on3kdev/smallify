@@ -35,3 +35,9 @@
 .input-error {
   border-color: var(--red);
 }
+
+@media (max-width: 992px) {
+  .input-mobile {
+    display: none;
+  }
+}

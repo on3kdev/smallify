@@ -2,7 +2,8 @@ import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { v4 as uuidv4 } from "uuid";
-import { Error } from "./App";
+import { ErrorType } from "../types/types";
+import { validateUrl } from "../utils";
 import Header from "./Header";
 import styles from "./Home.module.css";
 import LinkInput from "./LinkInput";
@@ -10,25 +11,11 @@ import List from "./List";
 
 interface Props {
   value: string | undefined;
-  error: Error;
+  error: ErrorType;
   setValue: (value: string | undefined) => void;
-  setError: (value: Error) => void;
+  setError: (value: ErrorType) => void;
   setUrl: (value: string | undefined) => void;
 }
-
-const validateUrl = (url: string) => {
-  const pattern = new RegExp(
-    "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-z\\d_]*)?$",
-    "i"
-  ); // fragment locator
-
-  return !!pattern.test(url);
-};
 
 const setNewItemtoDb = async (body: string) => {
   const linksPromise = await fetch("http://localhost:9001/api/links", {
